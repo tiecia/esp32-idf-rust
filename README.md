@@ -1,4 +1,4 @@
-# eps32-idf-rust
+# esp32-idf-rust
 
 It`s a fork of [esp32-idf-rust](github.com/knarkzel/esp32) with some changes as detailed below.
 

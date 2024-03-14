@@ -1,25 +1,22 @@
-# esp32
+# eps32-idf-rust
 
-Rust with Xtensa support for Nix using flakes.
+It`s a fork of [esp32-idf-rust](github.com/knarkzel/esp32) with some changes as detailed below.
 
-```
-$ nix flake show github:knarkzel/esp32
-└───packages
-    └───x86_64-linux
-        └───esp32: package 'esp32'
-$ nix build github:knarkzel/esp32#esp32
-$ ls -a result
-.  ..  .cargo  .rustup
-```
+## Differences from upstream
 
-## Minimal example
+1. Added `permittedInsecurePackages = [ "python-2.7.18.7" ]` because Python 2 is deprecated and the build fails without it.
+2. Changed the base docker image tag from `all_latest` to `esp32_latest` to reduce build time and size.
+3. Updated docker image digest to the latest version to this date (2024-03-14).
 
+## Minimal example 
+
+`flake.nix (devShell)`
 ```nix
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     esp32 = {
-      url = "github:knarkzel/esp32";
+      url = "github:edupsousa/esp32-idf-rust";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -46,15 +43,15 @@ $ ls -a result
 }
 ```
 
-## Getting started
+## Upgrading or chaging the base Docker image
 
-Use the above flake, then follow the [Rust on ESP Book](https://esp-rs.github.io/book/writing-your-own-application/generate-project-from-template.html).
-
-## Notes
-
-When building from source, you need a huge amount of memory, about 36 GB.
-To create temporary swap, use following commands:
+Run the command below to get the latest image digest and update the `flake.nix` file in this repository.
 
 ```
-$ fallocate -l 36G /tmp/swap; mkswap /tmp/swap; swapon /tmp/swap
+nix run nixpkgs#nix-prefetch-docker -- --image-name espressif/idf-rust --image-tag esp32_latest
 ```
+
+
+Note: You can change the `esp32_latest` tag to any other tag you want to use. 
+
+Find the available tags [here](https://hub.docker.com/r/espressif/idf-rust/tags).

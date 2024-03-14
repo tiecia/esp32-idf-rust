@@ -16,10 +16,10 @@
     };
     esp32 = pkgs.dockerTools.pullImage {
       imageName = "espressif/idf-rust";
-      imageDigest = "sha256:4d6ca6c1764225eb07374fb3c0584696bf0e9483abf04d075db27b60bc3e3d49";
-      sha256 = "Y8l8B73V+4neNaL3tk0cHkDYW4bWOgTjIRO2fD4Kacw=";
+      imageDigest = "sha256:83a40f1feeeb9eb3e5c00055b313d8cbe2201de1ee8455f2ffc00f7e71dddf0d";
+      sha256 = "0kikm5v91y0s86kx7wkrb2cm52dd0pq4ll58bv0xdbmnfxl374al";
       finalImageName = "espressif/idf-rust";
-      finalImageTag = "all_latest";
+      finalImageTag = "esp32_latest";
     };
   in {
     packages.${system}.esp32 = pkgs.stdenv.mkDerivation {

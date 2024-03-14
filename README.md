@@ -38,7 +38,7 @@ $ ls -a result
       ];
 
       shellHook = ''
-        export PATH="${idf-rust}/.rustup/toolchains/esp/bin:$PATH"
+        export PATH="${idf-rust}/.rustup/toolchains/esp/bin:${idf-rust}/.rustup/toolchains/esp/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin:$PATH"
         export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
       '';
     };

@@ -11,7 +11,7 @@
     pkgs = import nixpkgs { 
       inherit system; 
       config = {
-        permittedInsecurePackages = [ "python-2.7.18.7" ];
+        permittedInsecurePackages = [ "python-2.7.18.8" ];
       };
     };
     esp32 = pkgs.dockerTools.pullImage {
